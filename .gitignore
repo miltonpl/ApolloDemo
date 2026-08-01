@@ -16,6 +16,8 @@ xcuserdata/
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
+# Apollo iOS CLI executable
+**/apollo-ios-cli
 
 # Swift Package Manager
 #
