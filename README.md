@@ -6,5 +6,5 @@
 
 ### Install Apollo iOS CLI
 
-```bash
-brew install apollo-ios-cli
+```Generate graph QL queies
+./Scripts/generate-graphql.sh
