@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5251BB8B3019BE4A00DD84EA /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 5251BB8A3019BE4A00DD84EA /* Apollo */; };
+		525789B4301FBE7E006F2E8D /* CountriesAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 525789B3301FBE7E006F2E8D /* CountriesAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525789B4301FBE7E006F2E8D /* CountriesAPI in Frameworks */,
 				5251BB8B3019BE4A00DD84EA /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = ApolloDemo;
 			packageProductDependencies = (
 				5251BB8A3019BE4A00DD84EA /* Apollo */,
+				525789B3301FBE7E006F2E8D /* CountriesAPI */,
 			);
 			productName = ApolloDemo;
 			productReference = 5251BB7B3019BD6D00DD84EA /* ApolloDemo.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				5251BB893019BE4A00DD84EA /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				525789B2301FBE7E006F2E8D /* XCLocalSwiftPackageReference "CountriesAPI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5251BB7C3019BD6D00DD84EA /* Products */;
@@ -342,6 +346,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		525789B2301FBE7E006F2E8D /* XCLocalSwiftPackageReference "CountriesAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = CountriesAPI;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		5251BB893019BE4A00DD84EA /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -358,6 +369,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5251BB893019BE4A00DD84EA /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		525789B3301FBE7E006F2E8D /* CountriesAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CountriesAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
