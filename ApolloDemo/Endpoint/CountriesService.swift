@@ -10,23 +10,19 @@ import Apollo
 import CountriesAPI
 
 class CountriesService {
-    let client: ApolloClient
-    init(url: URL) {
-//        client = ApolloClient(
-//            networkTransport: RequestChainNetworkTransport(
-//                interceptorProvider: URLSession.shared,
-//                endpointURL: endpointURL
-//            )
-//        )
-        client = ApolloClient(url: url)
+    let networking: Networking
+    let graphqlURL: URL
 
+    init(config: AppConfiguration, networking: Networking) {
+        self.graphqlURL = config.graphqlURL
+        self.networking = networking
     }
 
-    func fetch() async throws -> GraphQLResponse<CountriesQuery>{
-        let query = CountriesQuery()
-//        let result = client.fetch(query: query)
-//        dump(result)
-        let client = ApolloClient(url: URL(string: "https://countries.trevorblades.com/")!)
-        return try await client.fetch(query: query, cachePolicy: .cacheFirst)
+    func fetch(query: CountriesQuery) async throws -> GraphQLResponse<CountriesQuery>{
+        let payload = GraphQLPayload(query: query)
+        let encoder = JSONEncoder()
+        let bodyData = try? encoder.encode(payload)
+        let request = URLRequest.post(url: graphqlURL, httpBody: bodyData)
+        return try await networking.executeQuery(query, request: request)
     }
 }

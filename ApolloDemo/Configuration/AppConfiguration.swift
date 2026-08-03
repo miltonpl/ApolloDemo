@@ -8,13 +8,17 @@
 import Foundation
 
 protocol AppConfiguration {
-    var graphQLURL: URL { get }
+    var graphqlURL: URL { get }
 }
 
 struct MexicoConfiguration: AppConfiguration {
     let environment: Environment
 
-    var graphQLURL: URL {
+    init(environment: Environment) {
+        self.environment = environment
+    }
+
+    var graphqlURL: URL {
         switch environment {
         case .production:
             return URL(string: "https://countries.trevorblades.com/")!
