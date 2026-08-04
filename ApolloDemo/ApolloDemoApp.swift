@@ -11,7 +11,13 @@ import SwiftUI
 struct ApolloDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let networking = Networking()
+            let config = MexicoConfiguration(environment: .staging)
+            let service = CountriesService(config: config, networking: networking)
+
+            let dataSource = CountriesDataSource(service: service)
+            let viewModel = CountriesViewModel(dataSource: dataSource)
+            CountriesListView(viewModel: viewModel)
         }
     }
 }

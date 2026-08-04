@@ -16,7 +16,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5251BB9D301C656D00DD84EA /* ApolloDemo */ = {
+		52578A33302070B3006F2E8D /* ApolloDemo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ApolloDemo;
 			sourceTree = "<group>";
@@ -39,7 +39,7 @@
 		5251BB723019BD6D00DD84EA = {
 			isa = PBXGroup;
 			children = (
-				5251BB9D301C656D00DD84EA /* ApolloDemo */,
+				52578A33302070B3006F2E8D /* ApolloDemo */,
 				5251BB7C3019BD6D00DD84EA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,7 +68,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				5251BB9D301C656D00DD84EA /* ApolloDemo */,
+				52578A33302070B3006F2E8D /* ApolloDemo */,
 			);
 			name = ApolloDemo;
 			packageProductDependencies = (
