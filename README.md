@@ -1,6 +1,6 @@
 # ApolloDemo
 
-
+<img src="images/countries-list.png" alt="Countries List" width="500">
 
 ## GraphQL
 
@@ -10,7 +10,7 @@
 ./Scripts/generate-graphql.sh
 
 
-1. 
+1.
 ./apollo-ios-cli init --schema-namespace CountriesAPI --module-type swiftPackage
 
 Step 1: Generate the package
@@ -38,15 +38,23 @@ Add the CountriesAPI product to your app target.
 Step 3: Import the package
 In your Swift file:
 ```
+
 import CountriesAPI
+
 ```
 Now this should compile:
 ```
+
 let query = CountriesQuery()
+
 ```
 
 Now this should compile:
 
 ```
+
 let query = CountriesQuery()
+
+```
+
 ```
