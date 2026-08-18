@@ -9,9 +9,14 @@ import SwiftUI
 
 struct CountriesListView: View {
     @State private var viewModel: CountriesViewModel
+    private let makeDetailsViewModel: () -> CountryDetailsViewModel
 
-    init(viewModel: CountriesViewModel) {
+    init(
+        viewModel: CountriesViewModel,
+         makeDetailsViewModel: @escaping() -> CountryDetailsViewModel
+    ) {
         _viewModel = State(initialValue: viewModel)
+        self.makeDetailsViewModel = makeDetailsViewModel
     }
 
     var body: some View {
@@ -34,31 +39,37 @@ struct CountriesListView: View {
                     }
                 } else {
                     List(viewModel.countries) { country in
-                        HStack(spacing: 16) {
-                            Text(country.emoji)
-                                .font(.largeTitle)
-                                .frame(width: 44, height: 44)
-                                .background(Color(.systemGroupedBackground))
-                                .clipShape(Circle())
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(country.name)
-                                    .font(.headline)
-                                Text("Code: \(country.id)")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                        NavigationLink(value: country.id) {
+                            HStack(spacing: 16) {
+                                Text(country.emoji)
+                                    .font(.largeTitle)
+                                    .frame(width: 44, height: 44)
+                                    .background(Color(.systemGroupedBackground))
+                                    .clipShape(Circle())
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(country.name)
+                                        .font(.headline)
+                                    Text("Code: \(country.id)")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                }
                             }
+                            .padding(.vertical, 4)
                         }
-                        .padding(.vertical, 4)
                     }
+                    .navigationDestination(for: String.self, destination: { countryCode in
+                        CountryDetailsView(
+                            viewModel: makeDetailsViewModel(),
+                            countryCode: countryCode)
+                    })
                     .overlay {
                         if viewModel.countries.isEmpty {
                             ContentUnavailableView("No Countries Found", systemImage: "globe")
                         }
                     }
                 }
-            }
+            }.navigationTitle("Global Countries")
         }
-        .navigationTitle("Global Countries")
         .task {
             await viewModel.loadCountries()
         }

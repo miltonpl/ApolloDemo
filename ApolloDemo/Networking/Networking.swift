@@ -32,7 +32,7 @@ extension Networking {
         let (data, response) = try await requestData(request: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkingError.response(response)
+            throw NetworkError.response(response)
         }
 
         // 1. Initialize the parser object instance
@@ -47,14 +47,14 @@ extension Networking {
             dataChunk: data,
             mergingIncrementalItemsInto: nil as ParsedResult<Query>?
         ) else {
-            throw NetworkingError.message("Unable to parse")
+            throw NetworkError.message("Unable to parse")
         }
 
         return parserResult.result
     }
 }
 
-enum NetworkingError: Error {
+enum NetworkError: Error {
     case message(String)
     case response(URLResponse)
 }

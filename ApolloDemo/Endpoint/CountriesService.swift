@@ -25,4 +25,12 @@ class CountriesService {
         let request = URLRequest.post(url: graphqlURL, httpBody: bodyData)
         return try await networking.executeQuery(query, request: request)
     }
+
+    func fetch(query: CountryDetailsQuery) async throws -> GraphQLResponse<CountryDetailsQuery>{
+        let payload = GraphQLPayload(query: query)
+        let encoder = JSONEncoder()
+        let bodyData = try? encoder.encode(payload)
+        let request = URLRequest.post(url: graphqlURL, httpBody: bodyData)
+        return try await networking.executeQuery(query, request: request)
+    }
 }

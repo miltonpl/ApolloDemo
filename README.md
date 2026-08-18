@@ -6,18 +6,19 @@
 
 ### Install Apollo iOS CLI
 
-```Generate graph QL queies
-./Scripts/generate-graphql.sh
 
 
-1.
+#### Create apollo codegen config json file
+
 ./apollo-ios-cli init --schema-namespace CountriesAPI --module-type swiftPackage
+
+Generate graph QL queies
+./Scripts/generate-graphql.sh
 
 Step 1: Generate the package
 First, make sure the package exists:
 
-
-Here what ./apollo-ios-cli generate do
+Here is what ```./apollo-ios-cli generate``` do
 Bash: ./apollo-ios-cli generate
 
 CountriesAPI/
@@ -37,24 +38,13 @@ Add the CountriesAPI product to your app target.
 
 Step 3: Import the package
 In your Swift file:
+Now this should compile:
 ```
-
 import CountriesAPI
-
-```
-Now this should compile:
-```
-
 let query = CountriesQuery()
-
 ```
+Downloads the GraphQL schema definition from the backend server.
+```./apollo-ios-cli fetch-schema```
 
-Now this should compile:
-
-```
-
-let query = CountriesQuery()
-
-```
-
-```
+Translates GraphQL schema & .graphql query files into type-safe Swift code.
+```./apollo-ios-cli generate``1

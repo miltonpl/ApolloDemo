@@ -17,7 +17,15 @@ struct ApolloDemoApp: App {
 
             let dataSource = CountriesDataSource(service: service)
             let viewModel = CountriesViewModel(dataSource: dataSource)
-            CountriesListView(viewModel: viewModel)
+            let countryDetailsDataSource = CountryDetailDataSource(service: service)
+            CountriesListView(
+                viewModel: viewModel,
+                makeDetailsViewModel: {
+                    CountryDetailsViewModel(
+                        dataSource: countryDetailsDataSource
+                    )
+                }
+            )
         }
     }
 }

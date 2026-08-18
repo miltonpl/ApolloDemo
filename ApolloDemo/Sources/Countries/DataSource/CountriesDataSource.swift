@@ -25,7 +25,7 @@ final class CountriesDataSource: CountriesDataSourceAPI {
         let response = try await service.fetch(query: query)
         if let errors = response.errors, !errors.isEmpty {
             let message = errors.map { $0.message ?? "" }.joined(separator: ",")
-            throw NetworkingError.message(message)
+            throw NetworkError.message(message)
         }
 
         guard let countries = response.data?.countries else {

@@ -30,5 +30,4 @@ final class CountriesViewModel {
         }
         isLoading = false
     }
-    
 }
