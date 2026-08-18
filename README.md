@@ -2,6 +2,8 @@
 
 <img src="images/countries-list.png" alt="Countries List" width="500">
 
+<img src="images/country-details.png" alt="Country Details" width="500">
+
 ## GraphQL
 
 ### Install Apollo iOS CLI
