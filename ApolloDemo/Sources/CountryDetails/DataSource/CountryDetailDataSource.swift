@@ -9,14 +9,14 @@ import Apollo
 import CountriesAPI
 import Foundation
 
-protocol CountryDetailDataSourceAPI {
+protocol CountryDetailDataSourceAPI: Sendable {
     func fetchDetails(for countryCode: String) async throws -> CountryDetailItem?
 }
 
-final class CountryDetailDataSource: CountryDetailDataSourceAPI {
-    private let service: CountriesService
+final actor CountryDetailDataSource: CountryDetailDataSourceAPI {
+    private let service: CountriesServices
 
-    init(service: CountriesService) {
+    init(service: CountriesServices) {
         self.service = service
     }
 

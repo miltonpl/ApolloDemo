@@ -9,18 +9,18 @@ import Apollo
 import CountriesAPI
 import Foundation
 
-protocol CountriesDataSourceAPI {
-    func getCountries() async throws -> [CountryItem]
+protocol CountriesDataSourceAPI: Sendable {
+    func fetchCountries() async throws -> [CountryItem]
 }
 
-final class CountriesDataSource: CountriesDataSourceAPI {
-    private let service: CountriesService
+final actor CountriesDataSource: CountriesDataSourceAPI {
+    private let service: CountriesServices
 
-    init(service: CountriesService) {
+    init(service: CountriesServices) {
         self.service = service
     }
 
-    func getCountries() async throws -> [CountryItem] {
+    func fetchCountries() async throws -> [CountryItem] {
         let query = CountriesQuery()
         let response = try await service.fetch(query: query)
         if let errors = response.errors, !errors.isEmpty {
