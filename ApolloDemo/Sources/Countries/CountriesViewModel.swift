@@ -23,9 +23,13 @@ final class CountriesViewModel {
     func loadCountries() async {
         isLoading = true
         errorMessage = nil
-        do {
-            countries = try await dataSource.getCountries()
-        } catch {
+        let result = await Result {
+            try await dataSource.fetchCountries()
+        }
+        switch result {
+        case .success(let items):
+            countries = items
+        case .failure(let error):
             errorMessage = error.localizedDescription
         }
         isLoading = false

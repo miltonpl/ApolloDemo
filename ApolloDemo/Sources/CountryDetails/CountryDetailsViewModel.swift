@@ -25,11 +25,18 @@ final class CountryDetailsViewModel {
         isLoading = true
         errorMessage = nil
         countryDetails = nil
-        do {
-            countryDetails = try await dataSource.fetchDetails(for: code)
-        } catch {
+
+        let result = await Result {
+            try await dataSource.fetchDetails(for: code)
+        }
+
+        switch result {
+        case .success(let item):
+            countryDetails = item
+        case .failure(let error):
             errorMessage = error.localizedDescription
         }
+
         isLoading = false
     }
 }
