@@ -13,18 +13,13 @@ struct ApolloDemoApp: App {
         WindowGroup {
             let networking = Networking()
             let config = MexicoConfiguration(environment: .staging)
-            let service = CountriesService(config: config, networking: networking)
+            let service = CountriesManager(config: config, networking: networking)
 
-            let dataSource = CountriesDataSource(service: service)
-            let viewModel = CountriesViewModel(dataSource: dataSource)
-            let countryDetailsDataSource = CountryDetailDataSource(service: service)
+            let listDataSource = CountriesDataSource(service: service)
+            let detailsFactory = CountryDetailsViewManager.live(service)
             CountriesListView(
-                viewModel: viewModel,
-                makeDetailsViewModel: {
-                    CountryDetailsViewModel(
-                        dataSource: countryDetailsDataSource
-                    )
-                }
+                viewModel: CountriesViewModel(dataSource: listDataSource),
+                detailsFactory: detailsFactory
             )
         }
     }

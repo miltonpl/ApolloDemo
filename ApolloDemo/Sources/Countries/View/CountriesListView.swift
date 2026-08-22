@@ -9,14 +9,14 @@ import SwiftUI
 
 struct CountriesListView: View {
     @State private var viewModel: CountriesViewModel
-    private let makeDetailsViewModel: () -> CountryDetailsViewModel
+    private let detailsFactory: CountryDetailsViewFactory
 
     init(
         viewModel: CountriesViewModel,
-         makeDetailsViewModel: @escaping() -> CountryDetailsViewModel
+        detailsFactory: CountryDetailsViewFactory
     ) {
         _viewModel = State(initialValue: viewModel)
-        self.makeDetailsViewModel = makeDetailsViewModel
+        self.detailsFactory = detailsFactory
     }
 
     var body: some View {
@@ -58,9 +58,7 @@ struct CountriesListView: View {
                         }
                     }
                     .navigationDestination(for: String.self, destination: { countryCode in
-                        CountryDetailsView(
-                            viewModel: makeDetailsViewModel(),
-                            countryCode: countryCode)
+                        detailsFactory.make(for: countryCode)
                     })
                     .overlay {
                         if viewModel.countries.isEmpty {
